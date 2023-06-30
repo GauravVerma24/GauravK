@@ -1,0 +1,11 @@
+<h1>Chat with {{ friend.username }}</h1>
+    <div id="chat-messages">
+        {% for chat in chats %}
+            <p>{{ chat.sender }}: {{ chat.message }}</p>
+        {% endfor %}
+    </div>
+    <form id="chat-form" method="post" action="{% url 'send_message' friend_id=friend.id %}">
+        {% csrf_token %}
+        <input type="text" name="message" placeholder="Type your message" required>
+        <button type="submit">Send</button>
+    </form>
